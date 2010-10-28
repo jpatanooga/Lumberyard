@@ -1,0 +1,1 @@
+hbase is the backing store for Lumberyard
