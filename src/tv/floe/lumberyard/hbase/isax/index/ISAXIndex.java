@@ -7,7 +7,7 @@ import edu.hawaii.jmotif.datatype.TSException;
 import edu.hawaii.jmotif.datatype.Timeseries;
 import edu.hawaii.jmotif.datatype.isax.ISAXUtils;
 import edu.hawaii.jmotif.datatype.isax.Sequence;
-import edu.hawaii.jmotif.datatype.isax.dev.Symbol;
+import edu.hawaii.jmotif.datatype.isax.Symbol;
 import edu.hawaii.jmotif.datatype.isax.index.HashTreeException;
 import edu.hawaii.jmotif.datatype.isax.index.IndexHashParams;
 import edu.hawaii.jmotif.datatype.isax.index.InternalNode;
@@ -36,7 +36,7 @@ public class ISAXIndex implements Iterable<NodePersisted> {
 	final public static String STORE_COL_NAME = "store";
 
 	//IndexHashParams params;
-	InternalNodePersisted root_node = null;
+	public InternalNodePersisted root_node = null; // this is public cause im lazy during dev
 	
 	// need to have a non-static index specific value here, could be working with multiple 
 	private String hbase_table_name = "";
@@ -390,83 +390,32 @@ public class ISAXIndex implements Iterable<NodePersisted> {
 		  
 	  }
 		
-	/*
-	 * This function is meant to index a shape into a timeseries pattern
-	 * 
-	 */
-	public void InsertShape() {
+
+
+/*	
+	public boolean InsertDNASequence( String sequence, String source_name, int offset ) {
 		
+		Timeseries ts_dna = null;
 		
-	}
-	
-	
-	/**
-	 * 
-	 * Insert a smaller DNA strand
-	 * 
-	 * 
-	 */
-	  public void InsertDNAString( String dna_sample, int window_len, String source_name ) {
-			 
-		  String dna_window = "";
-		  int curr_offset = 0;
-		  int beginIndex = 0;
-		  int endIndex = 0;
+		if ( this.root_node.params.orig_ts_len != sequence.length() ) {
+			return false;
+		}
+		
+		try {
+			ts_dna = ISAXUtils.CreateTimeseriesFromDNA( sequence );
+		} catch (TSException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+					
+		this.InsertSequence(ts_dna, source_name, offset );
 			
-			while ( curr_offset < dna_sample.length() ) {
-				
-				beginIndex = curr_offset;
-				if (beginIndex + window_len < dna_sample.length() ) {
-					
-					endIndex = beginIndex + window_len;
-					
-				} else {
-					
-					endIndex = dna_sample.length();
-					
-				}
-				
-				if ( endIndex >= dna_sample.length() ) {
-					break;
-				}
-			
-				dna_window = dna_sample.substring(beginIndex, endIndex);
-				Timeseries ts_dna = null;
-				
-				try {
-					ts_dna = ISAXUtils.CreateTimeseriesFromDNA( dna_window );
-				} catch (TSException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-							
-				this.InsertSequence(ts_dna, source_name, beginIndex );
-					
-				curr_offset = endIndex;
-				
-				
-				
-			}	  
-		  
-	  }
-	
-	/*
-	 * Inser an entire genome
-	 */
-	public void InsertGenome() { 
-		
-		// give the index a local file reference?
-		
+		return true;
 	}
+*/	
+	 
 	
-	
-	/*
-	 * 
-	 */
-	public void InsertWaveform() {
-		
-		
-	}
+
 
 	@Override
 	public Iterator<NodePersisted> iterator() {

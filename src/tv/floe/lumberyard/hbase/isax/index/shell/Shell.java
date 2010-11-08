@@ -1,5 +1,5 @@
 package tv.floe.lumberyard.hbase.isax.index.shell;
-
+/*
 import org.apache.commons.cli.BasicParser;
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.CommandLineParser;
@@ -9,11 +9,13 @@ import org.apache.commons.cli.Option;
 import org.apache.commons.cli.OptionBuilder;
 import org.apache.commons.cli.Options;
 import org.apache.commons.cli.ParseException;
-
+*/
 import tv.floe.lumberyard.hbase.isax.index.HBaseUtils;
 import tv.floe.lumberyard.hbase.isax.index.ISAXIndex;
 //import tv.floe.lumberyard.hbase.isax.index.Shell;
 import tv.floe.lumberyard.hbase.isax.index.TestISAXIndex;
+import tv.floe.lumberyard.hbase.isax.index.adapters.GenomicIndex;
+import tv.floe.lumberyard.hbase.isax.index.adapters.TestGenomicIndex;
 
 public class Shell {
 
@@ -103,6 +105,7 @@ public class Shell {
 		System.out.println( "\t\tListTables");
 		System.out.println( "\t\tRunQuickTests <index_name>" );
 		System.out.println( "\t\tIndexDNASample <index_name>" );
+		System.out.println( "\t\tIndexGenomeFile <index_name> <genome_file>" );
 		
 	}
 	
@@ -166,8 +169,32 @@ public class Shell {
 		    	  System.out.println( "Quick DNA Index Test: " + table_name );
 		    	  
 		    	  
-		    	  TestISAXIndex.testDNASegmentInsertAndQuery( table_name );
+		    	  TestGenomicIndex.testDNASegmentInsertAndQuery( table_name );
 
+			} else if ( "IndexGenomeFile".equals(cmd) ) {
+				
+				
+				
+				
+				if ( args.length < 3 ) {
+					
+					this.printMainHelp();
+					return;
+				}
+				
+		    	  String table_name = args[++i];
+		    	  
+		    	  String genome_file = args[++i];
+		    	  
+		    	  
+		    	  
+		    	  System.out.println( "Indexing genome file" + genome_file + " into index " + table_name );
+		    	  
+		    	  
+		    	  //TestGenomicIndex.testDNASegmentInsertAndQuery( table_name );
+		    	  GenomicIndex.IndexGenomeFile(table_name, genome_file);
+		    	  
+		    	  
 			} else if ( "RunQuickTests".equals(cmd) ) {
 				
 				if ( args.length < 4 ) {
