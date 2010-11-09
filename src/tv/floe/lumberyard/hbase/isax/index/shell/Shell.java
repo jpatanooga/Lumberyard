@@ -14,6 +14,7 @@ import tv.floe.lumberyard.hbase.isax.index.HBaseUtils;
 import tv.floe.lumberyard.hbase.isax.index.ISAXIndex;
 //import tv.floe.lumberyard.hbase.isax.index.Shell;
 import tv.floe.lumberyard.hbase.isax.index.TestISAXIndex;
+import tv.floe.lumberyard.hbase.isax.index.adapters.GenomePatternOccurrences;
 import tv.floe.lumberyard.hbase.isax.index.adapters.GenomicIndex;
 import tv.floe.lumberyard.hbase.isax.index.adapters.TestGenomicIndex;
 
@@ -106,6 +107,7 @@ public class Shell {
 		System.out.println( "\t\tRunQuickTests <index_name>" );
 		System.out.println( "\t\tIndexDNASample <index_name>" );
 		System.out.println( "\t\tIndexGenomeFile <index_name> <genome_file>" );
+		System.out.println( "\t\tSearchGenomeIndex <index_name> <dna_sequence>" );
 		
 	}
 	
@@ -194,7 +196,35 @@ public class Shell {
 		    	  //TestGenomicIndex.testDNASegmentInsertAndQuery( table_name );
 		    	  GenomicIndex.IndexGenomeFile(table_name, genome_file);
 		    	  
+			} else if ( "SearchGenomeIndex".equals(cmd) ) {
+
+				
+				if ( args.length < 3 ) {
+					
+					this.printMainHelp();
+					return;
+				}
+				
+		    	  String table_name = args[++i];
 		    	  
+		    	  String dna_seq = args[++i];
+		    	  
+		    	  
+		    	  
+		    	  System.out.println( "Searching for sequence '" + dna_seq + "' in index " + table_name );
+		    	  
+		    	  
+		    	  //TestGenomicIndex.testDNASegmentInsertAndQuery( table_name );
+		    	  //GenomicIndex.IndexGenomeFile(table_name, genome_file);
+		    	  
+		    	  GenomePatternOccurrences occur = GenomicIndex.ApproxSearchForDNASequence(table_name, dna_seq);
+				
+				
+		    	  System.out.println( "\n\nFound:" );
+		    	  
+		    	  occur.Debug();
+				
+				
 			} else if ( "RunQuickTests".equals(cmd) ) {
 				
 				if ( args.length < 4 ) {
