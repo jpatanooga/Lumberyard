@@ -219,11 +219,17 @@ public class Shell {
 		    	  
 		    	  GenomePatternOccurrences occur = GenomicIndex.ApproxSearchForDNASequence(table_name, dna_seq);
 				
-				
-		    	  System.out.println( "\n\nFound:" );
-		    	  
-		    	  occur.Debug();
-				
+		    	  if ( null == occur ) {
+		    		  
+		    		  System.out.println( "No DNA sequences were found that were similar to your query pattern of: " + dna_seq );
+		    		  
+		    	  } else {
+					
+			    	  System.out.println( "\n\nFound:" );
+			    	  
+			    	  occur.Debug();
+
+		    	  }
 				
 			} else if ( "RunQuickTests".equals(cmd) ) {
 				

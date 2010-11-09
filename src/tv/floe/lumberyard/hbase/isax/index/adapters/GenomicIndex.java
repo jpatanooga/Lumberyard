@@ -191,12 +191,23 @@ public class GenomicIndex {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 		TimeseriesInstance instances = index.ApproxSearch(ts_dna);
 		
-		GenomePatternOccurrences genomeOccur = new GenomePatternOccurrences( instances.getTS() );
-		genomeOccur.AddOccurences(instances);
+		GenomePatternOccurrences genomeOccur = null;
 		
+		if ( null == instances ) {
+		
+			
+			
+		} else {
+			
+			
+			genomeOccur = new GenomePatternOccurrences( instances.getTS() );
+			genomeOccur.AddOccurences(instances);
+
+		}
+
 		return genomeOccur;
 		
 	}
