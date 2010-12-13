@@ -1,0 +1,7 @@
+Lumberyard is iSAX indexing stored in HBase for persistent and scalable index storage.
+
+Lumberyard is based on the paper: http://www.cs.ucr.edu/~eamonn/iSAX.pdf
+
+The jmotif project provides some support classes for Lumberyard: http://code.google.com/p/jmotif/
+
+For more info on iSAX in the jmotif project: http://code.google.com/p/jmotif/wiki/iSAXJavaPrimer
