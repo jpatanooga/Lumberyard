@@ -8,3 +8,20 @@ For more info on iSAX in the jmotif project: http://code.google.com/p/jmotif/wik
 
 Lumberyard is licensed ASF 2.0
 
+
+
+State of Code
+
+- approximate search works
+
+- kNN and exact search are currently broken for iSAX indexes in jmotif's implementation. Therefore Lumberyard does not currently have them, either.
+
+- Indexing only works as a serial process currently. I've yet to dig into the best way to update multiple columns at once in hbase.
+
+
+
+Notes
+
+7/20/2011
+
+- rebuilt to use the hadoop-core (20.2) and hbase (0.90) jars from CDH3u0
