@@ -5,8 +5,12 @@
 	<classpathentry kind="lib" path="/Users/jpatterson/Documents/workspace/jmotif_isax_trunk_cur/jmotif.lib.jar"/>
 	<classpathentry kind="lib" path="/Users/jpatterson/Documents/workspace/LumberYard_dev/lib/avro-1.4.1.jar"/>
 	<classpathentry kind="lib" path="/Users/jpatterson/Documents/workspace/LumberYard_dev/lib/avro-tools-1.4.1.jar"/>
-	<classpathentry kind="lib" path="/Users/jpatterson/Downloads/eclipse/plugins/org.junit4_4.5.0.v20090824/junit.jar"/>
 	<classpathentry kind="lib" path="/Users/jpatterson/Documents/git_test/Lumberyard/lib/hadoop-core-0.20.2-cdh3u0.jar"/>
 	<classpathentry kind="lib" path="/Users/jpatterson/Documents/git_test/Lumberyard/lib/hbase-0.90.1-cdh3u0.jar"/>
+	<classpathentry kind="lib" path="/Users/jpatterson/Downloads/junit-4.8.jar"/>
+	<classpathentry kind="lib" path="/Users/jpatterson/Documents/workspace/jmotif_isax_trunk_cur/lib/hackystat/hackystatlogger.lib.jar"/>
+	<classpathentry kind="lib" path="/Users/jpatterson/Documents/workspace/jmotif_isax_trunk_cur/lib/hackystat/hackystatuserhome.lib.jar"/>
+	<classpathentry kind="lib" path="/Users/jpatterson/Documents/git_test/Lumberyard/lib/zookeeper.jar"/>
+	<classpathentry kind="lib" path="/Users/jpatterson/Documents/git_test/Lumberyard/lib/log4j-1.2.16.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

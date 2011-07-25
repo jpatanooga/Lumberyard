@@ -244,7 +244,8 @@ public class Shell {
 					
 			    	  System.out.println( "\n\nFound:" );
 			    	  
-			    	  occur.Debug();
+			    	  //occur.Debug();
+			    	  occur.Print();
 
 		    	  }
 				

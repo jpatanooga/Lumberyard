@@ -93,6 +93,8 @@ public class GenomicIndex {
 			}	  
 		  
 	  }	
+	  
+	  
 	
 	
 	public static void IndexGenomeFile( String table_name, String genome_file ) {

@@ -54,5 +54,30 @@ public class GenomePatternOccurrences extends TimeseriesInstance {
 		
 	}
 	
+	public void Print() {
+		
+		Iterator itr = this.getOccurences().keySet().iterator();
+
+		String dna = "";
+		
+		try {
+			dna = ISAXUtils.CreateDNAFromTimeseries(this.getTS());
+		} catch (TSException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}		
+		
+		System.out.println( "For '" + dna + "' we found >" );
+		
+	    while(itr.hasNext()) {
+	    	
+	    	String strKey = itr.next().toString();
+	    	
+	    	System.out.println( "\t\t --- Occurence in source '" + strKey + "' at offset " + this.getOccurences().get( strKey ).longValue() );
+	    	
+	    }				
+		
+	}
+	
 
 }

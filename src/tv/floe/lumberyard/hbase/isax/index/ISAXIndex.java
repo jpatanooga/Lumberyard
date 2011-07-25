@@ -150,7 +150,7 @@ public class ISAXIndex implements Iterable<NodePersisted> {
 			
 		} else {
 		
-			System.out.println( "\n\nISAXIndex > Found Root! > " + node_bytes.length + " bytes" );
+			//System.out.println( "\n\nISAXIndex > Found Root! > " + node_bytes.length + " bytes" );
 
 			this.root_node = new InternalNodePersisted( );
 			  this.root_node.key = new Sequence( 0 );
@@ -218,7 +218,6 @@ public class ISAXIndex implements Iterable<NodePersisted> {
 		
 		boolean bCreated = false;
 		
-		System.out.println( "Lumberyard > CreateTable > " + table_name );
 		
 		// let's see if this table_name already exists
 		
@@ -233,8 +232,7 @@ public class ISAXIndex implements Iterable<NodePersisted> {
 			return false;
 			
 		} else {
-			
-			
+				
 			
 		}
 		
@@ -269,7 +267,19 @@ public class ISAXIndex implements Iterable<NodePersisted> {
 			e.printStackTrace();
 		}
 		
-		System.out.println( "Table Created!\n" );
+		//System.out.println( "Table Created!\n" );
+		
+		
+		System.out.println( "Lumberyard > CreateIndex > " + table_name + " > Successful!" );
+		System.out.println( "Parameters ---------------------------- " );
+		System.out.println( "Base Cardinality: " + p.base_card );
+		System.out.println( "Dimenstions: " + p.d );
+		System.out.println( "Dimension to Split On: " + p.dim_index );
+		System.out.println( "iSAX Word Length: " + p.isax_word_length );
+		System.out.println( "Base Time Series Sample Length: " + p.orig_ts_len );
+		System.out.println( "Terminal Node Split Threshold: " + p.threshold );
+		System.out.println( "--------------------------------------- " );
+		
 		
 		return true;
 		
@@ -380,7 +390,7 @@ public class ISAXIndex implements Iterable<NodePersisted> {
 			  
 		  } else {
 			  
-			  System.out.println( "Found root, inserting instance..." );
+			//  System.out.println( "Found root, inserting instance..." );
 			  
 			  this.root_node.Insert(ts_inst);
 			  
@@ -404,6 +414,12 @@ public class ISAXIndex implements Iterable<NodePersisted> {
 	  public TimeseriesInstance ApproxSearch( Timeseries ts ) {
 		  
 		  return this.root_node.ApproxSearch(ts);
+		  
+	  }
+	  
+	  public TimeseriesInstance ApproxSearchMostSimilarMatch( Timeseries ts ) {
+		  
+		  return null;
 		  
 	  }
 		

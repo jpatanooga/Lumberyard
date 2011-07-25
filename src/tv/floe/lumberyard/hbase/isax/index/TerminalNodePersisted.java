@@ -37,6 +37,7 @@ import edu.hawaii.jmotif.datatype.isax.index.NodeType;
 import edu.hawaii.jmotif.datatype.isax.index.SerDeUtils;
 import edu.hawaii.jmotif.datatype.isax.index.TimeseriesInstance;
 import edu.hawaii.jmotif.datatype.isax.index.kNNSearchResults;
+import edu.hawaii.jmotif.logic.distance.EuclideanDistance;
 
 //import edu.hawaii.jmotif.datatype.isax.index.AbstractNode;
 
@@ -109,7 +110,7 @@ public class TerminalNodePersisted extends NodePersisted {
 		    	
 		    	String strKey = itr.next().toString();
 		    	
-		    	System.out.println( "T-node-ts-key: " + strKey );
+		    	//System.out.println( "T-node-ts-key: " + strKey );
 		    	this.arInstances.get(strKey).Debug();
 		    	
 				  if ( null == this.arInstances.get( strKey ) ) {
@@ -123,7 +124,7 @@ public class TerminalNodePersisted extends NodePersisted {
 		    	
 		    }
 		    
-		    System.out.println( "---------------------------------" );
+		    //System.out.println( "---------------------------------" );
 							  
 		  
 		  
@@ -239,36 +240,99 @@ public class TerminalNodePersisted extends NodePersisted {
 				}
 			  		  
 		  
-				System.out.println( "Terminal Node Debug > Approx Search " );
+		//		System.out.println( "Terminal Node Debug > Approx Search " );
 				//System.out.println( "Searching For > Seq: " + ts_isax.getStringRepresentation() );
-				System.out.println( "Searching For > Seq: " + ts_isax.getIndexHash() );
-				System.out.println( "Searching For > ts: " + ts.toString() );
-				this.DebugInstances();
+		//		System.out.println( "Searching For > Seq: " + ts_isax.getIndexHash() );
+		//		System.out.println( "Searching For > ts: " + ts.toString() );
+		//		this.DebugInstances();
 				  
 				  String isax_hash = ts_isax.getIndexHash(); //this.params.createMaskedBitSequence(isax);
 				  	  
 				   // termination check, AKA "is this me?"
 				  
-				  System.out.println( "key( " + this.key.getIndexHash() + " ) == search( " + isax_hash + " ) ?" );
+			//	  System.out.println( "key( " + this.key.getIndexHash() + " ) == search( " + isax_hash + " ) ?" );
 				  
 				  if ( this.key.getIndexHash().equals(isax_hash) ) {
 					  
-					  System.out.println( "found > key > " + isax_hash + ", looking for exact match" );
+			//		  System.out.println( "found > key > " + isax_hash + ", looking for exact match" );
 
+					  return this.SearchLocalInstancesForClosestMatch( ts, isax_hash );
+					  
+/*					  
 					  if ( this.arInstances.containsKey(ts.toString() ) ) {
-						  
-						  System.out.println( "found match!" );
 						  
 						  return this.arInstances.get(ts.toString() );
 						  
 					  }
-					  
+*/				  
 				  } // if
 				  
 				  
 			return null;	  
 
 	  }  
+	  
+
+	  public TimeseriesInstance SearchLocalInstancesForClosestMatch( Timeseries ts, String isax_hash ) {
+		  
+		  Iterator itr = this.arInstances.keySet().iterator();
+		  
+		  TimeseriesInstance closest_so_far = null;
+		  TimeseriesInstance current_instance = null;
+		  
+		  //System.out.println();
+		  
+		    while(itr.hasNext()) {
+		    	
+		    	String strKey = itr.next().toString();
+		    	
+		    	//System.out.println( "T-node-ts-key: " + strKey );
+		    	this.arInstances.get(strKey).Debug();
+		    	
+		    	
+		    	current_instance = this.arInstances.get( strKey );
+		    	
+		    	System.out.println( "> Scanning through > " + strKey );
+		    	
+				  if ( null == closest_so_far ) {
+					  
+					  //System.out.println( "TerminalNode > Debug > Null: " + strKey + ", count: " + this.arInstances.size()  );
+					  
+					  closest_so_far = current_instance;
+					  
+				  }	else {
+			
+					  //EuclideanDistance.distance( closest_so_far., point2);
+					  //if (1 == ts.compareTo(current_instance)) {
+
+					  double cur_dist = 0;
+					  double best_so_far_dist = 0;
+					  
+					try {
+						cur_dist = EuclideanDistance.seriesDistance( ts.values(), current_instance.getTS().values() );
+						best_so_far_dist = EuclideanDistance.seriesDistance( ts.values(), closest_so_far.getTS().values() );
+					} catch (TSException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					  
+					  
+						  
+					  if ( cur_dist < best_so_far_dist ) {
+					  
+						  closest_so_far = current_instance;
+						  
+					  }
+					    					  
+					  
+				  }
+		    	//new_node.Insert( node.arInstances.get(strKey) );
+		    	
+		    }	
+		    
+		    return closest_so_far;
+		  
+	  }
 
 	  
 

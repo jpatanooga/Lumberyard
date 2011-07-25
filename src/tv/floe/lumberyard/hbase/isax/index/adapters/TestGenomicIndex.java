@@ -74,12 +74,14 @@ public class TestGenomicIndex {
 		System.out.println( "Indexing Human DNA Sample: \n" + human_dna );
 		
 			//index.InsertDNAString(human_dna, window_len, "human" );
-		GenomicIndex.IndexGenomeFile(table_name, human_dna);
+		//GenomicIndex.IndexGenomeFile(table_name, human_dna);
+		GenomicIndex.InsertDNASample(table_name, human_dna, window_len, "human");
 			
 		System.out.println( "Indexing Chimp DNA Sample: \n" + chimp_dna );			
 			
 		//	index.InsertDNAString(chimp_dna, window_len, "chimp" );
-		GenomicIndex.IndexGenomeFile(table_name, chimp_dna);	
+		//GenomicIndex.IndexGenomeFile(table_name, chimp_dna);
+		GenomicIndex.InsertDNASample(table_name, chimp_dna, window_len, "chimp");
 		
 		
 	}
