@@ -14,9 +14,9 @@ State of Code
 
 - approximate search works
 
-- kNN and exact search are currently broken for iSAX indexes in jmotif's implementation. Therefore Lumberyard does not currently have them, either.
+- kNN and exact search are currently broken for iSAX indexes in jmotif's implementation. Therefore Lumberyard does not currently have them, either. (to be fair, we're mostly interested in appox search with Lumberyard.)
 
-- Indexing only works as a serial process currently. I've yet to dig into the best way to update multiple columns at once in hbase.
+- Indexing only works as a serial process currently. I've yet to dig into the best way to update multiple rows at once in hbase. (locking is a tricky performance issue)
 
 
 
